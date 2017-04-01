@@ -1,0 +1,37 @@
+{
+  "name": "farmer",
+  "version": "0.0.1",
+  "description": "A very light library to navigate in views",
+  "main": "./distribution/index.js",
+  "scripts": {
+    "build": "babel source --presets babel-preset-es2015 --out-dir distribution",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maximobelen/farmer.git"
+  },
+  "keywords": [
+    "Scroll",
+    "Animate",
+    "Ease",
+    "Scrolling",
+    "Easing"
+  ],
+  "author": {
+    "name": "Máximo Belén",
+    "email": "maximobelen@me.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "gsap": "^1.19.1",
+    "raf": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
+    "domify": "^1.4.0",
+    "handlebars": "^4.0.6",
+    "signals": "^1.0.0"
+  }
+}
