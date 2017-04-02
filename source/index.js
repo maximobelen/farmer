@@ -1,4 +1,4 @@
-var Signal = require('signals');
+import Signal from 'signals';
 
 const Farmer = {
     
@@ -91,6 +91,6 @@ const Farmer = {
         }
     }
 }
-
-Farmer.Section = require('./section');
+Farmer.Section = require('./section').default;
+Farmer.Component = require('./component').default;
 module.exports = Farmer;

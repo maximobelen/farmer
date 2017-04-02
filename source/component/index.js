@@ -2,10 +2,13 @@ import hbs from 'handlebars';
 import domify from 'domify';
 import { TweenMax } from 'gsap';
 
-export default class Section {
+export default class Component {
 	constructor(model, template){
 	    this.container = domify(hbs.compile(template)(model));
 	    this.components = [];
+	    this.instanceComponents();
+	    this.appendComponents();
+	    this.addListeners();
 	}
 	
 	showUp() {
