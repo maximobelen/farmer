@@ -1,5 +1,5 @@
 {
-  "name": "farmer",
+  "name": "farmer-js",
   "version": "0.0.1",
   "description": "A very light library to navigate in views",
   "main": "./distribution/index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maximobelen/farmer.git"
+    "url": "git+https://github.com/maximobelen/farmer.git"
   },
   "keywords": [
     "Scroll",
@@ -18,10 +18,7 @@
     "Scrolling",
     "Easing"
   ],
-  "author": {
-    "name": "Máximo Belén",
-    "email": "maximobelen@me.com"
-  },
+  "author": "Máximo Belén <maximobelen@me.com>",
   "license": "MIT",
   "dependencies": {
     "gsap": "^1.19.1",
@@ -33,5 +30,9 @@
     "domify": "^1.4.0",
     "handlebars": "^4.0.6",
     "signals": "^1.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/maximobelen/farmer/issues"
+  },
+  "homepage": "https://github.com/maximobelen/farmer#readme"
 }

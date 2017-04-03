@@ -1,6 +1,6 @@
 import hbs from 'handlebars';
 import domify from 'domify';
-import { TweenMax } from 'gsap';
+import gsap from 'gsap';
 
 export default class Component {
 	constructor(model, template){

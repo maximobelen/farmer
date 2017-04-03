@@ -1,6 +1,10 @@
 'use strict';
 
-var Signal = require('signals');
+var _signals = require('signals');
+
+var _signals2 = _interopRequireDefault(_signals);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Farmer = {
     seed: function seed(model) {
@@ -28,7 +32,7 @@ var Farmer = {
             this.onRouteChanged.dispatch();
         }.bind(this);
 
-        this.onRouteChanged = new Signal();
+        this.onRouteChanged = new _signals2.default();
     },
     _instancePreloader: function _instancePreloader() {
         this.preloader = new this.model.preloader.seed.Preloader();
@@ -82,6 +86,6 @@ var Farmer = {
         }
     }
 };
-
-Farmer.Section = require('./section');
+Farmer.Section = require('./section').default;
+Farmer.Component = require('./component').default;
 module.exports = Farmer;

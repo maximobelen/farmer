@@ -22,15 +22,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Section = function () {
-	function Section(model, template) {
-		_classCallCheck(this, Section);
+var Component = function () {
+	function Component(model, template) {
+		_classCallCheck(this, Component);
 
 		this.container = (0, _domify2.default)(_handlebars2.default.compile(template)(model));
 		this.components = [];
+		this.instanceComponents();
+		this.appendComponents();
+		this.addListeners();
 	}
 
-	_createClass(Section, [{
+	_createClass(Component, [{
 		key: 'showUp',
 		value: function showUp() {
 			TweenMax.fromTo(this.container, 0.4, { autoAlpha: 0 }, { delay: 0.4, autoAlpha: 1, ease: Power2.easeOut,
@@ -72,7 +75,7 @@ var Section = function () {
 		}
 	}]);
 
-	return Section;
+	return Component;
 }();
 
-exports.default = Section;
+exports.default = Component;
