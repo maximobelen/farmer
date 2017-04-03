@@ -1,7 +1,7 @@
 {
   "name": "farmer-js",
   "version": "0.0.2",
-  "description": "A very light library to navigate in views",
+  "description": "A very lightweight library to create web pages",
   "main": "./distribution/index.js",
   "scripts": {
     "build": "babel source --presets babel-preset-es2015 --out-dir distribution",
