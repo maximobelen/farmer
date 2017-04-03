@@ -1,6 +1,6 @@
 {
   "name": "farmer-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A very light library to navigate in views",
   "main": "./distribution/index.js",
   "scripts": {
