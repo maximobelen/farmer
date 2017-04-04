@@ -48,14 +48,17 @@ var Component = function () {
 		key: 'instanceComponents',
 		value: function instanceComponents() {}
 	}, {
-		key: 'appendComponents',
-		value: function appendComponents() {}
+		key: 'addComponent',
+		value: function addComponent(key, addToDom, Component) {
+			this.components[key] = new Component();
+			if (addToDom) {
+				this.components[key].section = this;
+				this.container.appendChild(this.components[key].container);
+			}
+		}
 	}, {
 		key: 'addListeners',
 		value: function addListeners() {}
-	}, {
-		key: 'resize',
-		value: function resize(w, h) {}
 	}, {
 		key: 'goOut',
 		value: function goOut() {

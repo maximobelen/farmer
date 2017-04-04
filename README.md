@@ -1,3 +1,7 @@
+[![LOGO](https://github.com/maximobelen/assets/raw/master/images/farmer/farmer.png)](https://github.com/maximobelen/assets/raw/master/images/farmer/farmer.png)
+
+and the very beginnings of the [ logo ](https://github.com/maximobelen/assets/blob/master/images/farmer/logo-draw.png)
+
 # Farmer
 Farmer is lightweight library to create a single-page web app. Farmer is a MC and only manage the views and the controllers and also the navigation between views with a simple router.
 

@@ -62,14 +62,14 @@ var Section = function () {
 			}
 		}
 	}, {
-		key: 'appendComponents',
-		value: function appendComponents() {}
-	}, {
 		key: 'addListeners',
 		value: function addListeners() {}
 	}, {
 		key: 'resize',
-		value: function resize(w, h) {}
+		value: function resize(w, h) {
+			this.container.style.width = w;
+			this.container.style.height = h;
+		}
 	}, {
 		key: 'goOut',
 		value: function goOut() {
