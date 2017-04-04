@@ -74,7 +74,6 @@ const Farmer = {
         for (var key in this.routes) {
             this.sections[key].instance.router = this.router;
             this.sections[key].instance.instanceComponents();
-            this.sections[key].instance.appendComponents();
             this.sections[key].instance.addListeners();
         }
     }

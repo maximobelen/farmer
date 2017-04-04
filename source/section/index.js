@@ -35,16 +35,13 @@ export default class Section {
 		}
 	}
 
-	appendComponents() {
-
-	}
-
 	addListeners() {
 
 	}
 
 	resize(w, h) {
-
+		this.container.style.width = w;
+		this.container.style.height = h;
 	}
 
 	goOut() {

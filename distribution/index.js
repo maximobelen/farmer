@@ -4,6 +4,10 @@ var _signals = require('signals');
 
 var _signals2 = _interopRequireDefault(_signals);
 
+var _router = require('./router');
+
+var _router2 = _interopRequireDefault(_router);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Farmer = {
@@ -12,12 +16,13 @@ var Farmer = {
         this.routes = this.model.routes;
         this.defaultSection = this.model.default;
         this.sections = {};
-        this.currentSection;
         this.variableString = '/#';
         this.currentUrl = '/';
         this._instancePreloader();
         this._instanceSections();
         this._addGlobalListeners();
+
+        this.router = new _router2.default(this);
     },
     _addGlobalListeners: function _addGlobalListeners() {
         window.onresize = function () {
@@ -50,10 +55,9 @@ var Farmer = {
     _handlePreloader: function _handlePreloader() {
         document.body.appendChild(this.sections[this.defaultSection].instance.container);
         this.preloader.goOut();
-        this.currentSection = this.sections[this.defaultSection].instance;
+        this.router._setCurrentSection(this.sections[this.defaultSection].instance);
         window.location.href = this.variableString + this.defaultSection;
-
-        this._procedeShowUp(this.currentSection);
+        this._procedeShowUp(this.router.getCurrentSection());
     },
     _procedeShowUp: function _procedeShowUp(section) {
         section.showUp();
@@ -66,20 +70,9 @@ var Farmer = {
             this.sections[key].instance.resize(window.innerWidth, window.innerHeight);
         }
     },
-    getCurrentUrl: function getCurrentUrl() {
-        return currentUrl;
-    },
-    harvest: function harvest(id) {
-        this.procedeGoOut(this.currentSection);
-        this.currentSection = this.sections[id].instance;
-        currentUrl = id;
-        window.location.href = this.variableString + id;
-        document.body.appendChild(this.currentSection.container);
-        this._procedeShowUp(this.currentSection);
-    },
     feed: function feed(framework) {
         for (var key in this.routes) {
-            this.sections[key].instance.framework = framework;
+            this.sections[key].instance.router = this.router;
             this.sections[key].instance.instanceComponents();
             this.sections[key].instance.appendComponents();
             this.sections[key].instance.addListeners();

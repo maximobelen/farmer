@@ -18,6 +18,10 @@ var _gsap = require('gsap');
 
 var _gsap2 = _interopRequireDefault(_gsap);
 
+var _signals = require('signals');
+
+var _signals2 = _interopRequireDefault(_signals);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27,7 +31,10 @@ var Section = function () {
 		_classCallCheck(this, Section);
 
 		this.container = (0, _domify2.default)(_handlebars2.default.compile(template)(model));
-		this.components = [];
+		this.components = {};
+		this.router = {};
+		this.afterGoOut = new _signals2.default();
+		this.afterShowUp = new _signals2.default();
 	}
 
 	_createClass(Section, [{
@@ -38,12 +45,22 @@ var Section = function () {
 					for (var i = 0; i < this.components.length; i++) {
 						this.components[i].showUp();
 					}
+					this.afterShowUp.dispatch();
 				}.bind(this)
 			});
 		}
 	}, {
 		key: 'instanceComponents',
 		value: function instanceComponents() {}
+	}, {
+		key: 'addComponent',
+		value: function addComponent(key, addToDom, Component) {
+			this.components[key] = new Component();
+			if (addToDom) {
+				this.components[key].section = this;
+				this.container.appendChild(this.components[key].container);
+			}
+		}
 	}, {
 		key: 'appendComponents',
 		value: function appendComponents() {}
@@ -56,12 +73,14 @@ var Section = function () {
 	}, {
 		key: 'goOut',
 		value: function goOut() {
+			for (var i = 0; i < this.components.length; i++) {
+				this.components[i].goOut();
+			}
+
 			TweenMax.fromTo(this.container, 0.4, { autoAlpha: 1 }, { delay: 0.8, autoAlpha: 0, ease: Power2.easeOut,
 				onComplete: function () {
-					for (var i = 0; i < this.components.length; i++) {
-						this.components[i].goOut();
-					}
 					this._remove();
+					this.afterGoOut.dispatch();
 				}.bind(this)
 			});
 		}
