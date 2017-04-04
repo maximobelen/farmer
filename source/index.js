@@ -1,4 +1,5 @@
 import Signal from 'signals';
+import Router from './router';
 
 const Farmer = {
     
@@ -7,12 +8,13 @@ const Farmer = {
         this.routes = this.model.routes;
         this.defaultSection = this.model.default;
         this.sections = {};
-        this.currentSection;
         this.variableString = '/#';
         this.currentUrl = '/';
         this._instancePreloader();
         this._instanceSections();
         this._addGlobalListeners();
+
+        this.router = new Router(this);
     },
 
     _addGlobalListeners() {
@@ -49,10 +51,9 @@ const Farmer = {
     _handlePreloader() {
         document.body.appendChild(this.sections[this.defaultSection].instance.container);
         this.preloader.goOut();
-        this.currentSection  = this.sections[this.defaultSection].instance;
+        this.router._setCurrentSection(this.sections[this.defaultSection].instance);
         window.location.href =  this.variableString + this.defaultSection;
-
-        this._procedeShowUp(this.currentSection);
+        this._procedeShowUp(this.router.getCurrentSection());
     },
 
     _procedeShowUp(section) {
@@ -69,22 +70,9 @@ const Farmer = {
         }
     },
 
-    getCurrentUrl() {
-        return currentUrl;
-    },
-
-    harvest(id) {
-        this.procedeGoOut(this.currentSection);
-        this.currentSection  = this.sections[id].instance;
-        currentUrl = id;
-        window.location.href =  this.variableString + id;
-        document.body.appendChild(this.currentSection.container);
-        this._procedeShowUp(this.currentSection);
-    },
-
     feed(framework) {
         for (var key in this.routes) {
-            this.sections[key].instance.framework = framework;
+            this.sections[key].instance.router = this.router;
             this.sections[key].instance.instanceComponents();
             this.sections[key].instance.appendComponents();
             this.sections[key].instance.addListeners();
