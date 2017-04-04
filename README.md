@@ -83,6 +83,9 @@ class Landing extends Section {
 export { Landing }
 
 ```
+#### Section tips
+If you add a component to your section using the this.addComponent method then by this.components.componentName you can access to your child components.
+And only this components added in this way are the one that are going to be animated in or animated out with the section when it correspond.
 
 ### Component
 #### Introduction
@@ -93,6 +96,7 @@ A component can have inner components.
 // Modules
 import fs from 'fs';
 import { Component } from 'farmer-js';
+import select from 'dom-select';
 
 //Model
 import model from './navbar-model.js';
@@ -114,11 +118,10 @@ class Navbar extends Component {
 
     instanceComponents() {
         this.logoContainer = select('.logo-container', this.container);
-    
     }
 
     addListeners() {
-        this.logoContainer.addEventListener('mousedown', function() {
+        this.components.logoContainer.addEventListener('mousedown', function() {
             if (this.section.router.getCurrentUrl() !== '/') {
                 this.goHome();
             }
@@ -128,7 +131,20 @@ class Navbar extends Component {
 
 module.exports = Navbar;
 ```
+#### addComponent (name, addToDom, Component);
 
+```js
+//The first param is the one that is used as component name, and is the one which you can find the component inside the this.components list
+//The secont param indicate if this component should be append it to the parent container or not (section, or parent component).
+//The third param is the final component class, without initizalization, it will be initialized by the library.
+
+//View ui Component
+this.addComponent('navbar', true, Navbar);
+
+//Handler Component
+this.addComponent('scroller', false, ScrollManager);
+
+```
 ### Router
 #### Introduction
 For farmer the router is in charge to navigate from one view to the other.
