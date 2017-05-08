@@ -37,7 +37,6 @@ const Farmer = {
         this.preloader =  new this.model.preloader.seed.Preloader;
         document.body.appendChild(this.preloader.container);
         this.preloader.instanceComponents();
-        this.preloader.appendComponents();
         this.preloader.addListeners();
     },
 
