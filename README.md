@@ -76,7 +76,7 @@ class Landing extends Section {
 
 	instanceComponents() {
 		// This is the way to append components to the 
-   		this.addComponent('navbar', true, Navbar);
+   		this.addComponent('navbar', true, new Navbar());
 	}
 
 	addListeners() {
@@ -143,10 +143,10 @@ module.exports = Navbar;
 //The third param is the final component class, without initizalization, it will be initialized by the library.
 
 //View ui Component
-this.addComponent('navbar', true, Navbar);
+this.addComponent('navbar', true, new Navbar());
 
 //Handler Component
-this.addComponent('scroller', false, ScrollManager);
+this.addComponent('scroller', false, new ScrollManager());
 
 ```
 ### Router
