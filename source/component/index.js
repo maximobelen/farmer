@@ -25,7 +25,7 @@ export default class Component {
 	}
 
 	addComponent(key, addToDom, Component) {
-		this.components[key] = new Component();
+		this.components[key] = Component;
 		if (addToDom) {
 			this.components[key].section = this;
 			this.container.appendChild(this.components[key].container);
