@@ -7,7 +7,6 @@ export default class Component {
 	    this.container = domify(hbs.compile(template)(model));
 	    this.components = [];
 	    this.instanceComponents();
-	    this.appendComponents();
 	    this.addListeners();
 	}
 	

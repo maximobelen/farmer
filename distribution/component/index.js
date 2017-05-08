@@ -29,7 +29,6 @@ var Component = function () {
 		this.container = (0, _domify2.default)(_handlebars2.default.compile(template)(model));
 		this.components = [];
 		this.instanceComponents();
-		this.appendComponents();
 		this.addListeners();
 	}
 
