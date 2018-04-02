@@ -52,24 +52,26 @@ const Farmer = {
         var presetUrl = this.currentLocation[this.currentLocation.length - 1];
 
         if (presetUrl !== '') {
-            var hash = presetUrl.split('#');
-            if (hash.length > 0) {
-                document.body.appendChild(this.sections['/' + hash[0]].instance.container);
-                this.preloader.goOut();
-                this.router._setCurrentSection(this.sections['/' + hash[0]].instance);
-                window.location.href = this.variableString + '/' + presetUrl;
+            var param = presetUrl.split('?');
+            var section = "";
+            if (param.length > 0) {
+                section = '/' + param[0];
+
             } else {
-                document.body.appendChild(this.sections['/' + presetUrl].instance.container);
-                this.preloader.goOut();
-                this.router._setCurrentSection(this.sections['/' + presetUrl].instance);
-                window.location.href = this.variableString + '/' + presetUrl;
+                section = '/' + presetUrl;
+
             }
+
         } else {
-            document.body.appendChild(this.sections[this.defaultSection].instance.container);
-            this.preloader.goOut();
-            this.router._setCurrentSection(this.sections[this.defaultSection].instance);
+            section = this.defaultSection;
             window.location.href = this.variableString + this.defaultSection;
         }
+
+        document.body.appendChild(this.sections[section].instance.container);
+        this.preloader.goOut();
+        this.router._setCurrentSection(this.sections[section].instance);
+        window.location.href = this.variableString + '/' + presetUrl;
+
         this._procedeShowUp(this.router.getCurrentSection());
     },
 
