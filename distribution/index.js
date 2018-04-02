@@ -52,10 +52,28 @@ var Farmer = {
         }
     },
     _handlePreloader: function _handlePreloader() {
-        document.body.appendChild(this.sections[this.defaultSection].instance.container);
-        this.preloader.goOut();
-        this.router._setCurrentSection(this.sections[this.defaultSection].instance);
-        window.location.href = this.variableString + this.defaultSection;
+        this.currentLocation = window.location.href.split('/');
+        var presetUrl = this.currentLocation[this.currentLocation.length - 1];
+
+        if (presetUrl !== '') {
+            var hash = presetUrl.split('#');
+            if (hash.length > 0) {
+                document.body.appendChild(this.sections['/' + hash[0]].instance.container);
+                this.preloader.goOut();
+                this.router._setCurrentSection(this.sections['/' + hash[0]].instance);
+                window.location.href = this.variableString + '/' + presetUrl;
+            } else {
+                document.body.appendChild(this.sections['/' + presetUrl].instance.container);
+                this.preloader.goOut();
+                this.router._setCurrentSection(this.sections['/' + presetUrl].instance);
+                window.location.href = this.variableString + '/' + presetUrl;
+            }
+        } else {
+            document.body.appendChild(this.sections[this.defaultSection].instance.container);
+            this.preloader.goOut();
+            this.router._setCurrentSection(this.sections[this.defaultSection].instance);
+            window.location.href = this.variableString + this.defaultSection;
+        }
         this._procedeShowUp(this.router.getCurrentSection());
     },
     _procedeShowUp: function _procedeShowUp(section) {
